@@ -6,8 +6,10 @@
     "react-scripts": "0.6.1"
   },
   "dependencies": {
+    "little-loader": "0.1.1",
     "react": "15.3.2",
-    "react-dom": "15.3.2"
+    "react-dom": "15.3.2",
+    "socket.io-client": "1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
