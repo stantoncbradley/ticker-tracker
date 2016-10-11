@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 
-const domain = 'http://localhost:4000';
+// const domain = 'http://localhost:4000';
+const domain = 'https://quote-stream.herokuapp.com/'
 const socket = io(domain);
 
 class TickerRow extends Component {
