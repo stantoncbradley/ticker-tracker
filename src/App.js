@@ -5,7 +5,6 @@ import {
   FormGroup,
   FormControl,
   ControlLabel,
-  Well,
   Button,
   Alert,
   Table
@@ -16,7 +15,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      tickers: ['AAPL'],
+      tickers: ['AAPL', 'GOOG', 'ENV', 'MSFT', 'FB'],
       alert: null
     }
   }
@@ -43,6 +42,12 @@ class App extends Component {
     this.setState({
       alert: null,
       tickers: this.state.tickers.concat(newTicker)
+    })
+  }
+
+  _deleteTicker(ticker) {
+    this.setState({
+      tickers: this.state.tickers.filter((t) => t !== ticker)
     })
   }
 
@@ -75,11 +80,12 @@ class App extends Component {
               <th>last trade time</th>
               <th>dividend</th>
               <th>yield</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             { this.state.tickers.map(ticker => (
-              <TickerRow ticker={ticker} key={ticker}/>
+              <TickerRow ticker={ticker} delete={this._deleteTicker.bind(this)} key={ticker}/>
             ))}
           </tbody>
         </Table>

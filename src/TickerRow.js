@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
+import { Button } from 'react-bootstrap'
 
 // const domain = 'http://localhost:4000';
 const domain = 'https://quote-stream.herokuapp.com/'
@@ -22,6 +23,14 @@ class TickerRow extends Component {
     });
   }
 
+  componentWillUnmount() {
+    socket.close()
+  }
+
+  _delete() {
+    this.props.delete(this.props.ticker)
+  }
+
   render() {
     const tickerData = this.state.data;
     return (
@@ -34,6 +43,7 @@ class TickerRow extends Component {
         <td>{tickerData.last_trade_time}</td>
         <td>{tickerData.dividend}</td>
         <td>{tickerData.yield}</td>
+        <td><Button bsStyle="danger" onClick={this._delete.bind(this)}>Delete</Button></td>
       </tr>
     );
   }
